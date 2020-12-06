@@ -1,3 +1,5 @@
+import './css/style.css'
+
 // Константные значения
 const depositeAmountRange = [1000, 3000000];
 const depositReplenishmentAmounttRange = [1000, 3000000];

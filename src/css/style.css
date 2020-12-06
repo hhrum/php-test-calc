@@ -1,7 +1,4 @@
-@font-face {
-    font-family: 'Europe Normal';
-	src: url("../fonts/Europe.ttf");
-}
+@import "fonts.css";
 
 * {
     margin: 0;

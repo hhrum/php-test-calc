@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="dist/main.css">
     <title>Калькулятор</title>
 </head>
 
@@ -13,7 +13,7 @@
     <header>
         <div class="head">
             <div class="company-logo">
-                <img src="logo.png" alt="Company Logo">
+                <img src="src/logo.png" alt="Company Logo">
             </div>
             <div class="company-contacts">
                 <p>8-800-100-5005</p>
@@ -98,7 +98,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="js/script.js"></script>
+    <script src="dist/bundle.js"></script>
 </body>
 
 </html>
