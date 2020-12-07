@@ -114,6 +114,10 @@ header .nav__item:focus {
     width: 652px;
 }
 
+.ui-datepicker {
+    z-index: 10 !important;
+}
+
 .calculator__title {
     color: var(--accent-color);
     padding: 20px 100px;

@@ -1,3 +1,14 @@
+<?php
+
+$j = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'dist' . DIRECTORY_SEPARATOR . 'manifest.json'); // в примере все файлы в корне
+$manifest = json_decode($j, true);
+
+echo "<pre>";
+print_r(time());
+echo "</pre>";
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="dist/main.css">
+    <link rel="stylesheet" href="<?php echo $manifest['main.css']; ?>">
     <title>Калькулятор</title>
 </head>
 
@@ -38,16 +49,14 @@
         </div>
         <div class="calculator">
             <div class="calculator__title">Калькулятор</div>
-            <form action="/calc" method="post" class="calculator__form" id="calculatorForm">
+            <form action="/calc.php" method="post" class="calculator__form" id="calculatorForm">
                 <div class="calculator__input">
                     <label for="date">Дата оформления вклада</label>
                     <input type="text" name="date" id="datepicker" class="calculator__field" autocomplete="off">
                 </div>
                 <div class="calculator__input">
                     <label for="depositeAmount">Сумма вклада</label>
-                    <input type="number" name="depositeAmount" id="depositeAmount" class="calculator__field"
-                        value="1000" min="1000" max="30000">
-                    <!-- <input type="range" id="depositeAmountRange" value="1000" min="1000" max="30000"> -->
+                    <input type="number" name="depositeAmount" id="depositeAmount" class="calculator__field" value="1000">
                 </div>
                 <div class="calculator__input">
                     <label for="depositeAmount">Срок вклада</label>
@@ -62,16 +71,15 @@
                 <div class="calculator__input">
                     <label>Пополнение вклада</label>
 
-                    <input type="radio" name="replenishment" id="replenishmentFalse" value="false" checked>
+                    <input type="radio" name="isReplenishment" id="replenishmentFalse" value="false" checked>
                     <label for="replenishmentFalse">Нет</label>
 
-                    <input type="radio" name="replenishment" id="replenishmentTrue" value="true">
+                    <input type="radio" name="isReplenishment" id="replenishmentTrue" value="true">
                     <label for="replenishmentTrue">Да</label>
                 </div>
                 <div class="calculator__input">
                     <label for="depositReplenishmentAmount">Сумма пополнения вклада</label>
-                    <input type="number" name="depositReplenishmentAmount" id="depositReplenishmentAmount"
-                        class="calculator__field" value="1000" min="1000" max="30000">
+                    <input type="number" name="depositReplenishmentAmount" id="depositReplenishmentAmount" class="calculator__field">
                 </div>
 
                 <div class="calculator__footer">
@@ -95,10 +103,7 @@
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="dist/bundle.js"></script>
+    <script src="<?php echo $manifest['main.js']; ?>"></script>
 </body>
 
 </html>

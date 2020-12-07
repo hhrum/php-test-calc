@@ -1,17 +1,24 @@
+import * as $ from 'jquery'
 import './css/style.css'
+
+// Подключаю jquery-ui 
+require('webpack-jquery-ui')
 
 // Константные значения
 const depositeAmountRange = [1000, 3000000];
 const depositReplenishmentAmounttRange = [1000, 3000000];
+const sliderStep = 10;
 
 var calculatorForm = $("#calculatorForm");
 calculatorForm.find("#datepicker").datepicker();
+calculatorForm.find("#datepicker").datepicker("option", "dateFormat", "dd.mm.yy");
 
 $(function () {
+    // Добавляю слайдеры для конкретных полей
     makeSliderForNumericInput("#depositeAmount", depositeAmountRange);
     makeSliderForNumericInput("#depositReplenishmentAmount", depositReplenishmentAmounttRange);
 
-    calculatorForm.submit(function (e) {
+    calculatorForm.find(".calculator__submit").on("click", function (e) {
         e.preventDefault();
 
         if (!formIsNotEmpty(calculatorForm)) {
@@ -20,13 +27,15 @@ $(function () {
         }
 
         var url = calculatorForm.attr('action');
+        const data = calculatorForm.serializeArray();
 
         $.ajax({
             type: "POST",
             url: url,
-            data: calculatorForm.serialize(),
+            data: data,
             success: function (data) {
-                alert(data); // show response from the php script.
+                const result = JSON.parse(data)
+                $(".calculator__result").html(result.success.toLocaleString('ru') + " руб");
             }
         });
 
@@ -35,13 +44,19 @@ $(function () {
 
 function makeSliderForNumericInput(inputId, range) {
     var depositeAmountInput = $(inputId);
-    depositeAmountInput.attr('min', range[0]);
+    depositeAmountInput.attr(
+        {
+            "min": range[0],
+            "max": range[1]
+        }
+    );
     depositeAmountInput.val(range[0]);
 
     var slider = $("<div class='calculator__slider'></div>").insertAfter(depositeAmountInput).slider({
         min: range[0],
         max: range[1],
         range: "min",
+        step: sliderStep,
         value: depositeAmountInput.val(),
         slide: function (event, ui) {
             depositeAmountInput.val(ui.value);
