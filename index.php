@@ -3,10 +3,6 @@
 $j = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'dist' . DIRECTORY_SEPARATOR . 'manifest.json'); // в примере все файлы в корне
 $manifest = json_decode($j, true);
 
-echo "<pre>";
-print_r(time());
-echo "</pre>";
-
 ?>
 
 <!DOCTYPE html>
